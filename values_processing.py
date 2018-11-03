@@ -33,3 +33,10 @@ def sort_clusters(values_in_clusters, labels_count):
 
 def normalize(vector):
     return [(value - min(vector))/max(vector) for value in vector]
+
+
+def sort_value_in_each_cluster(clusters):
+    for item in clusters:
+        all_tuples_in_cluster = clusters[item]
+        tmp = all_tuples_in_cluster.sort(key=lambda x: int(x[1]))
+    return clusters
