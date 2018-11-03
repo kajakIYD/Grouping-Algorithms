@@ -11,8 +11,10 @@ classes = ['a', 'b', 'c', 'd', 'e']
 kmeans = []
 for c, i in zip(classes, range(len(classes))):
     class_string = "Klasa 3" + c + ".txt"
-    values_raw = file_parsing.load_values(file_path=class_string)
+    values_raw_unsorted = [int(item) for item in file_parsing.load_values(file_path=class_string)]
+    values_raw = sorted(values_raw_unsorted)
     values = values_processing.append_student_to_value(values_raw)
+    values_unsorted = values_processing.append_student_to_value(values_raw_unsorted)
     plt.figure(i)
     plt.xlabel('Result')
     plt.xlim(left=1)
