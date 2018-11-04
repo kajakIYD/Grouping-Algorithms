@@ -20,11 +20,14 @@ def sort_clusters(values_in_clusters, labels_count):
     temp = []
     for i in range(labels_count):
         values_from_cluster = [int(tup[1]) for tup in values_in_clusters[i]]
-        if max(values_from_cluster) > -1:
-            temp.append((i, max(values_in_clusters[i])))
+        if len(values_from_cluster) > 0:
+            if max(values_from_cluster) > -1:
+                temp.append((i, max(values_in_clusters[i])))
         else:
             temp.append((i, None))
-    temp.sort(key=lambda tup: tup[1], reverse=True)
+            # return -1
+    temp = [x for x in temp if x[1] != None]
+    temp.sort(key=lambda tup: tup[1][1], reverse=True)
     sorted_values_in_clusters = {}
     for i, pos in zip(temp, range(labels_count)):
         sorted_values_in_clusters[pos] = values_in_clusters[i[0]]
